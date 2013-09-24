@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+    <h:head>
+        <title>RMC Hewlett Packard</title>
+    </h:head>
+    <h:body>
+  <center>
+   <h:form>  
+                  
+    <p:growl id="msg" showDetail="true" escape="false" />  
+  
+    <h3 style="margin-top:0">Basic PickList</h3>  
+  
+    <p:pickList id="pickList" value="#{pickListBean.cities}" var="city"   
+                itemLabel="#{city}" itemValue="#{city}" />  
+  
+    <p:commandButton id="citySubmit" value="Submit" update="displayCities" oncomplete="PF('cityDialog').show()" style="margin-top:5px"/>  
+  
+   
+    <p:pickList id="pojoPickList" value="#{pickListBean.players}" var="player" effect="bounce"  
+                    itemValue="#{player}" itemLabel="#{player.name}" 
+                    showSourceControls="true" showTargetControls="true" showCheckbox="true"  
+                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >  
+  
+        <f:facet name="sourceCaption">Available</f:facet>  
+        <f:facet name="targetCaption">Starting</f:facet>  
+  
+        <p:ajax event="transfer" listener="#{pickListBean.onTransfer}" update="msg" />  
+  
+        <p:column style="width:25%">  
+            <p:graphicImage value="/images/barca/#{player.photo}" width="30" height="40" />  
+        </p:column>  
+  
+            <p:column style="width:75%;">  
+            #{player.name}  
+        </p:column>  
+  
+    </p:pickList>  
+  
+    <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="PF('playerDialog').show()" style="margin-top:5px"/>  
+  
+    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">  
+        <h:panelGrid id="displayCities" columns="2">  
+            <h:outputText value="Source: " style="font-weight:bold"/>  
+                <ui:repeat value="#{pickListBean.cities.source}" var="item">  
+                <h:outputText value="#{item}" style="margin-right:5px" />  
+            </ui:repeat>  
+  
+            <h:outputText value="Target: " style="font-weight:bold"/>  
+            <ui:repeat value="#{pickListBean.cities.target}" var="item">  
+                <h:outputText value="#{item}" style="margin-right:5px" />  
+            </ui:repeat>  
+        </h:panelGrid>  
+    </p:dialog>  
+  
+    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog">  
+        <h:panelGrid id="displayPlayers" columns="2">  
+            <h:outputText value="Source: " style="font-weight:bold"/>  
+            <ui:repeat value="#{pickListBean.players.source}" var="player">  
+                <h:outputText value="#{player.name}" style="margin-right:5px" />  
+            </ui:repeat>  
+  
+            <h:outputText value="Target: " style="font-weight:bold"/>  
+            <ui:repeat value="#{pickListBean.players.target}" var="player">  
+                <h:outputText value="#{player.name}" style="margin-right:5px" />  
+            </ui:repeat>  
+        </h:panelGrid>  
+    </p:dialog>  
+  
+</h:form>
+</center>
+    </h:body>
+</html>

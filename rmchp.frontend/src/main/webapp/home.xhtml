@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" >
+ 
+    <h:head>
+    	<title>JSF 2.0 Hello World</title>
+    </h:head>
+    <h:body bgcolor="white">
+    	<h:form>  
+  
+    <p:growl id="growl" showDetail="true"/>  
+  
+    <p:gmap center="36.890257,30.707417" zoom="13" type="HYBRID" model="#{mapBean.simpleModel}"  style="width:600px;height:400px">  
+        <p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}" update="growl" />  
+    </p:gmap>  
+  
+</h:form>  
+    </h:body>
+</html>

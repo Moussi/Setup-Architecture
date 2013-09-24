@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+  <wb-module deploy-name="rmchp.frontend">
+        <dependent-module archiveName="rmchp.bl-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rmchp.bl/rmchp.bl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="rmchp.dal-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rmchp.dal/rmchp.dal">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="rmchp.dom-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rmchp.dom/rmchp.dom">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    <property name="context-root" value="rmchp.frontend"/>
+    <property name="java-output-path" value="/target/classes"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+  </wb-module>
+</project-modules>
