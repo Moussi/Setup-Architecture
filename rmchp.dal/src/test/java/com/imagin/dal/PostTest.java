@@ -10,29 +10,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.imagin.dom.Member;
 import com.imagin.dom.Post;
+import com.imagin.dom.WjaIssue;
+import com.imagin.repositories.MemberRepositories;
 import com.imagin.repositories.PostRepositories;
+import com.imagin.repositories.WjaIssueRepositories;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:META-INF/application.xml")
+@ContextConfiguration(locations = "classpath:META-INF/application.xml")
 public class PostTest {
 
 	@Autowired
 	PostRepositories repository;
-	
+	@Autowired
+	MemberRepositories repositorymem;
+
+	@Autowired
+	WjaIssueRepositories repositorywja;
+
 	@Test
 	public void test() {
-		Post post = new Post();
-		post.setDate(new Date());
-		post.setNom("forth Post");
+		Member post = new Member();
+		post.setAddress(new Date().toString());
+		post.setName("first member");
+
 		
-		repository.save(post);
+		WjaIssue wja=new WjaIssue();
+		wja.setDescription("dddd");
+		wja.setMember(post);
 		
-		Post dbpost = repository.findOne(post.getIdpost());
+		repositorywja.save(wja);
+		
+		Member dbpost = repositorymem.findOne(post.getId());
 		assertNotNull(dbpost);
-		//System.out.println(dbpost.getNom());
-		System.out.println("date :"+repository.findByName("third Post").getDate());
+		// System.out.println(dbpost.getNom());
+		// System.out.println("date :"+repositorymem.findByName("forth Post").getDate());
 	}
 
 }
-
